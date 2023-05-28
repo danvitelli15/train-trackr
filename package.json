@@ -2,12 +2,19 @@
   "name": "train-trackr",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "docker:down": "docker compose down",
+    "docker:up": "docker compose up -d"
+  },
   "private": true,
   "dependencies": {
+    "@azure/functions": "^3.5.1",
+    "@nestjs/azure-func-http": "^0.9.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/platform-fastify": "^9.4.2",
+    "@prisma/client": "^4.13.0",
     "axios": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
@@ -34,6 +41,7 @@
     "jest-environment-node": "^29.4.1",
     "nx": "15.9.2",
     "prettier": "^2.6.2",
+    "prisma": "^4.13.0",
     "ts-jest": "^29.0.5",
     "ts-node": "10.9.1",
     "typescript": "~4.9.5"

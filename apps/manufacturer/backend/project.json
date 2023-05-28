@@ -23,6 +23,24 @@
         "production": {}
       }
     },
+    "db-migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          {
+            "command": "npx prisma migrate dev --name "
+          }
+        ],
+        "cwd": "apps/manufacturer/backend"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/manufacturer/backend/**/*.ts"]
+      }
+    },
     "serve": {
       "executor": "@nrwl/js:node",
       "defaultConfiguration": "development",
@@ -36,13 +54,6 @@
         "production": {
           "buildTarget": "manufacturer-backend:build:production"
         }
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/manufacturer/backend/**/*.ts"]
       }
     },
     "test": {

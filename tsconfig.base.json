@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@train-trackr/manufacturer/tenant-database": ["libs/manufacturer/tenant-database/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

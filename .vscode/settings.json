@@ -1,0 +1,8 @@
+{
+  "azureFunctions.deploySubpath": "apps/manufacturer/products/create-product",
+  "azureFunctions.projectLanguage": "TypeScript",
+  "azureFunctions.projectRuntime": "~4",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.projectSubpath": "apps/manufacturer/products/create-product",
+  "azureFunctions.preDeployTask": "npm prune (functions)"
+}

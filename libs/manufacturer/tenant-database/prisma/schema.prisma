@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../../node_modules/@prisma-clients/manufacturer-tenant-client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model CustomerAccount {
+  id        String      @id @default(uuid())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Purchaser Purchaser[]
+
+  @@map("customer_account")
+}
+
+model Item {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+  quantity    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  orderId     String?
+
+  @@map("item")
+}
+
+model Order {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items             OrderItem[]
+  OrderFullfillment OrderFullfillment[]
+
+  @@map("order")
+}
+
+model OrderFullfillment {
+  id        String   @id @default(uuid())
+  orderId   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+  order Order?      @relation(fields: [orderId], references: [id])
+
+  @@map("order_fullfillment")
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  orderId   String?
+
+  Order               Order?             @relation(fields: [orderId], references: [id])
+  OrderFullfillment   OrderFullfillment? @relation(fields: [orderFullfillmentId], references: [id])
+  orderFullfillmentId String?
+
+  @@map("order_item")
+}
+
+model Purchaser {
+  id                String   @id @default(uuid())
+  customerAccountId String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  customerAccount CustomerAccount? @relation(fields: [customerAccountId], references: [id])
+
+  @@map("purchaser")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user")
+}
